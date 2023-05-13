@@ -1,40 +1,56 @@
 'use strict';
 
+// Setting all variables.
 const calculatorBtn = document.getElementById('btn');
 const resultDiv = document.getElementById('result');
-const resetBtn = document.getElementById('resetBtn');
+const resetBtn = document.getElementById('reset-btn');
+const yourGaugeInput = document.getElementById('val1');
+const targetGaugeInput = document.getElementById('val2');
+const targetKnitsInput = document.getElementById('val3');
+const resultInput = document.getElementById('resultInput');
 
-const gaugeCalc = function () {
-  event.preventDefault();
+// Calculator function
+const gaugeCalc = function (e) {
+  e.preventDefault();
 
-  let yourGauge = document.getElementById('val1').value;
-  let targetGauge = document.getElementById('val2').value;
-  let targetKnits = document.getElementById('val3').value;
-
+  // Setting variables for use in function
+  let yourGauge = yourGaugeInput.value;
+  let targetGauge = targetGaugeInput.value;
+  let targetKnits = targetKnitsInput.value;
   let answer;
 
+  // Comparing gauge sizes to decide which formula to use
   if (yourGauge < targetGauge) {
     answer = (targetKnits / targetGauge) * yourGauge;
   } else if (yourGauge > targetGauge) {
     answer = (targetKnits / yourGauge) * targetGauge;
-  } else {
-    answer = 'the same amount of';
+  }
+  // Making sure the user is aware they are dumb, just in case.
+  else {
+    resultInput.value = 'Both gauges are the same. Are you stupid?';
+    return;
   }
 
+  // Ensuring to only display (a maximum of 2) deciimals when necessary.
   if (answer % 1 !== 0) {
-    answer = answer.toFixed(2);
+    answer = Number(answer).toFixed(2);
   }
 
+  // Self explanatory answer displayer
   resultInput.value = `You need to knit ${answer} knits to match the size given in example.`;
 };
 
-calculatorBtn.addEventListener('click', gaugeCalc);
+// Resetting button function.
+const reset = function (e) {
+  e.preventDefault();
 
-const reset = function () {
-  event.preventDefault();
-
-  let yourGauge = (document.getElementById('val1').value = '');
-  let targetGauge = (document.getElementById('val2').value = '');
-  let targetKnits = (document.getElementById('val3').value = '');
+  // Reset the input values
+  yourGaugeInput.value = '';
+  targetGaugeInput.value = '';
+  targetKnitsInput.value = '';
+  resultInput.value = '';
 };
+
+// Button event Listeners
+calculatorBtn.addEventListener('click', gaugeCalc);
 resetBtn.addEventListener('click', reset);
