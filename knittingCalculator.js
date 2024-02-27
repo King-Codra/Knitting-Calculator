@@ -27,6 +27,20 @@ const gaugeCalc = function (e) {
     return;
   }
 
+  // Check if the user gauge input field has been filled in
+  if (!yourGauge) {
+    // If user gauge is not filled in, inform the user
+    resultInput.value = "Please fill in the 'Your Gauge' field.";
+    return;
+  }
+
+  // Check if the target gauge input field has been filled in
+  if (!targetGauge) {
+    // If target gauge is not filled in, inform the user
+    resultInput.value = "Please fill in the 'Pattern Gauge' field.";
+    return;
+  }
+
   // Comparing gauge sizes to decide which formula to use
   if (yourGauge < targetGauge) {
     answer = (targetKnits / targetGauge) * yourGauge;
