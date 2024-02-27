@@ -14,31 +14,23 @@ const gaugeCalc = function (e) {
   e.preventDefault();
 
   // Setting variables for use in function
-  let yourGauge = yourGaugeInput.value;
-  let targetGauge = targetGaugeInput.value;
-  let targetKnits = targetKnitsInput.value;
+  const yourGauge = parseFloat(document.getElementById('val1').value);
+  const targetGauge = parseFloat(document.getElementById('val2').value);
+  const targetKnits = parseFloat(document.getElementById('val3').value);
   let answer;
 
-  // Check if the target knits input field has been filled in
-  if (!targetKnits) {
-    // If target knits is not filled in, inform the user
-    resultInput.value =
-      "Please fill in the 'Number of knits the pattern uses' field.";
-    return;
-  }
-
-  // Check if the user gauge input field has been filled in
-  if (!yourGauge) {
-    // If user gauge is not filled in, inform the user
-    resultInput.value = "Please fill in the 'Your Gauge' field.";
-    return;
-  }
-
-  // Check if the target gauge input field has been filled in
-  if (!targetGauge) {
-    // If target gauge is not filled in, inform the user
-    resultInput.value = "Please fill in the 'Pattern Gauge' field.";
-    return;
+  // Check if any of the input fields are empty or not filled in
+  if (!yourGauge || !targetGauge || !targetKnits) {
+    // If any input field is not filled in, inform the user accordingly
+    if (!yourGauge) {
+      resultInput.value = "Please fill in the 'Your Gauge' field.";
+    } else if (!targetGauge) {
+      resultInput.value = "Please fill in the 'Pattern Gauge' field.";
+    } else {
+      resultInput.value =
+        "Please fill in the 'Number of knits the pattern uses' field.";
+    }
+    return; // Exit the function
   }
 
   // Comparing gauge sizes to decide which formula to use
