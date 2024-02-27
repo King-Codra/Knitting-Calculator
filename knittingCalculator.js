@@ -19,6 +19,14 @@ const gaugeCalc = function (e) {
   let targetKnits = targetKnitsInput.value;
   let answer;
 
+  // Check if the target knits input field has been filled in
+  if (!targetKnits) {
+    // If target knits is not filled in, inform the user
+    resultInput.value =
+      "Please fill in the 'Number of knits the pattern uses' field.";
+    return;
+  }
+
   // Comparing gauge sizes to decide which formula to use
   if (yourGauge < targetGauge) {
     answer = (targetKnits / targetGauge) * yourGauge;
