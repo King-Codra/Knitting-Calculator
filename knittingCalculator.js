@@ -25,9 +25,9 @@ const gaugeCalc = function (e) {
   } else if (yourGauge > targetGauge) {
     answer = (targetKnits / yourGauge) * targetGauge;
   }
-  // Making sure the user is aware they are dumb, just in case.
+  // Logic checking if calculation is necessary, if not, inform user.
   else {
-    resultInput.value = 'Both gauges are the same. Are you stupid?';
+    resultInput.value = 'Both gauges are the same. You can start knitting!';
     return;
   }
 
