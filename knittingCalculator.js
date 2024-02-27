@@ -31,7 +31,7 @@ const gaugeCalc = function (e) {
     return;
   }
 
-  // Ensuring to only display (a maximum of 2) deciimals when necessary.
+  // Ensuring to only display (a maximum of 2) decimals when necessary.
   if (answer % 1 !== 0) {
     answer = Number(answer).toFixed(2);
   }
